@@ -1,10 +1,8 @@
 import os
 from datetime import timedelta
 from pathlib import Path
-
-import decouple
 import dj_database_url
-from decouple import config
+import decouple
 
 db_from_env = dj_database_url.config()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -18,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = decouple.config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com']
 
@@ -81,11 +79,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USERNAME'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOSTNAME'),
-        'PORT': config('DB_PORT', cast=int),
+        'NAME': decouple.config('DB_NAME'),
+        'USER': decouple.config('DB_USERNAME'),
+        'PASSWORD': decouple.config('DB_PASSWORD'),
+        'HOST': decouple.config('DB_HOSTNAME'),
+        'PORT': decouple.config('DB_PORT', cast=int),
     }
 }
 
