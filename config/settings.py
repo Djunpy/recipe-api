@@ -3,8 +3,12 @@ from datetime import timedelta
 from pathlib import Path
 import dj_database_url
 import decouple
+import django_heroku
 
+
+django_heroku.settings(locals())
 db_from_env = dj_database_url.config()
+DATABASES['default'].update(prod_db)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
