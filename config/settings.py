@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = decouple.config('SECRET_KEY')
+SECRET_KEY = '62f67b43d1645b870c45d122f10c347caae0693bc4af7f9e95'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': decouple.config('DB_NAME'),
-        'USER': decouple.config('DB_USERNAME'),
-        'PASSWORD': decouple.config('DB_PASSWORD'),
-        'HOST': decouple.config('DB_HOSTNAME'),
-        'PORT': decouple.config('DB_PORT', cast=int),
+        'NAME': 'd7s1213msego89',
+        'USER': 'eskvlqzbevunst',
+        'PASSWORD': '87d951818ad6ef4a795ea94cedf4816948c6d7388c4cfecfbe07bbe4a4ecad5a',
+        'HOST': 'ec2-52-203-118-49.compute-1.amazonaws.com',
+        'PORT': 5432,
     }
 }
 
