@@ -51,8 +51,11 @@ class Recipe(models.Model):
         verbose_name = _('Recipe')
         verbose_name_plural = _('Recipes')
 
+    def __str__(self):
+        return self.title
+
     def get_total_number_of_likes(self):
-        return self.resipelike_set.count()
+        return self.likes.count()
 
     def get_total_number_of_bookmarks(self):
         return self.bookmarked_by.count()
@@ -73,3 +76,6 @@ class RecipeLike(models.Model):
         related_name='likes'
     )
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username

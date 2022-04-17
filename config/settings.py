@@ -4,8 +4,7 @@ from pathlib import Path
 import dj_database_url
 import decouple
 import django_heroku
-
-
+import sys
 
 db_from_env = dj_database_url.config()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -16,12 +15,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '62f67b43d1645b870c45d122f10c347caae0693bc4af7f9e95'
+SECRET_KEY = decouple.config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['recipe-d.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -82,12 +81,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd7s1213msego89',
-        'USER': 'eskvlqzbevunst',
-        'PASSWORD': '87d951818ad6ef4a795ea94cedf4816948c6d7388c4cfecfbe07bbe4a4ecad5a',
-        'HOST': 'ec2-52-203-118-49.compute-1.amazonaws.com',
-        'PORT': 5432,
-    }
+        'NAME': decouple.config('NAME'),
+        'USER': decouple.config('USER'),
+        'PASSWORD': decouple.config('PASSWORD'),
+        'HOST': decouple.config('HOST'),
+        'PORT': decouple.config('PORT', case=int),
+    },
+    'TEST': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        },
 }
 
 
@@ -128,10 +131,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 
 # Default primary key field type
